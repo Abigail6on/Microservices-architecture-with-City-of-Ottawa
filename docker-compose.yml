@@ -1,0 +1,36 @@
+version: "3"
+services: 
+    location-service:
+        build: "./location-service"
+        depends_on: 
+            - location-service-db
+        environment: 
+            - DB_URI=mysql://root:password@location-service-db/db?charset=UTF8
+        volumes: 
+            - ./location-service:/opt/app
+
+    location-service-db:
+        environment: 
+            - MYSQL_ROOT_PASSWORD=password
+            - MYSQL_DATABASE=db
+        image: mysql:5.7.20
+        ports: 
+            - 0.0.0.0:7200:3306
+
+    login-service:
+        build: "./login-service"
+        depends_on: 
+            - login-service-db
+        environment: 
+            - DB_URI=mysql://root:password@login-service-db/db?charset=UTF8
+        volumes: 
+            - ./login-service:/opt/app
+
+    login-service-db:
+        environment: 
+            - MYSQL_ROOT_PASSWORD=password
+            - MYSQL_DATABASE=db
+        image: mysql:5.7.20
+        ports:
+            - 0.0.0.0:7201:3306
+
