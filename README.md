@@ -36,3 +36,12 @@ We are using MYSQL and Squel Pro
 control d 
 
     exite docker container
+
+
+If your docker container running have issue, run 
+
+    docker-compose down -v
+
+Then run 
+
+    docker-compose up
