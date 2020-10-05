@@ -9,8 +9,9 @@ import accessEnv from "#root/helpers/accessEnv";
 const PORT = accessEnv("PORT", 7000);
 
 const apolloServer = new ApolloServer({
-    resolvers,
-    typeDefs
+
+  resolvers,
+  typeDefs
 });
 
 const app = express();
@@ -18,14 +19,15 @@ const app = express();
 app.use(cookieParser());
 
 app.use(
-    cors ({
-        origin: (origin, cb) => cb(null, true),
-        credentials: true
-    })
+  cors({
+    origin: (origin, cb) => cb(null, true),
+    credentials: true
+  })
 );
 
-apolloServer.applyMiddleware({app, cors: false, path: "/graphql"});
+
+apolloServer.applyMiddleware({ app, cors: false, path: "/graphql" });
 
 app.listen(PORT, "0.0.0.0", () => {
-    console.info(`API gateway listening to ${PORT}`);
-})
+  console.info(`API gateway listening on ${PORT}`);
+});
