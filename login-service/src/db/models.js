@@ -29,7 +29,7 @@ Users.init(
 );
 
 export class UserSession extends Model {}
-Users.init(
+UserSession.init(
     {
         id: {
             allowNull: false,
@@ -52,6 +52,7 @@ Users.init(
     {
         modelName: "userSessions",
         paranoid: false,
+        sequelize,
         updatedAt: false
     }
 

@@ -11,6 +11,15 @@ const typeDefs = gql
     type Query {
         locations: [Location!]!
     }
+
+    type User {
+        email:String!
+        id: ID!
+    }
+
+    type Mutation {
+        createUser(email: String!, password: String!): User!
+    }
 `;
 
 export default typeDefs;
