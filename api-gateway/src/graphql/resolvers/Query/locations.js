@@ -1,12 +1,7 @@
+import locationService from "#root/adapters/locationService";
 
 const locationResolver = async () => { 
-    return [
-        {
-            description: "New York",
-            id: 1,
-            title: "test"
-        }
-    ];
+    return await locationService.fetchAllLocations();
 };
 
 export default locationResolver;

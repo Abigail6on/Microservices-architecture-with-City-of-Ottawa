@@ -17,3 +17,7 @@ GraphQL for endpoint API fetch
 Express dependencies
 
     yarn add cookie-parser cors express
+
+Like request
+
+    yarn add got
