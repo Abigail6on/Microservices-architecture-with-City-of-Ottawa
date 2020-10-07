@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Login from "./Login/login";
 
 const Container = styled.div
 `
@@ -35,7 +36,7 @@ const Root = () => {
                hahahahaha
            </Content>
            <Sidebar>
-               menu nav 
+               <Login />
            </Sidebar>
         </Container>
     </Wrapper>
