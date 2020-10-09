@@ -1,9 +1,10 @@
-import UserService from "#root/adapters/UserService";
+  
+import UsersService from "#root/adapters/UsersService";
 
 const UserSession = {
-    user: aync userSession => {
-        return await UserService.fetchUser({ userId: userSession.userId});
-    }
-}
+  user: async userSession => {
+    return await UsersService.fetchUser({ userId: userSession.userId });
+  }
+};
 
 export default UserSession;

@@ -19,4 +19,8 @@ export default class UsersService {
         }).json();
         return body;
     }
+    static async fetchUserSession({ userSessionId }) {
+        const body = await got.get(`${USERS_SERVICE_URI}/sessions/${userSessionId}`).json();
+        return body;
+    }
 }

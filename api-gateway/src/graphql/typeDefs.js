@@ -12,6 +12,7 @@ const typeDefs = gql
 
     type Query {
         locations: [Location!]!
+        userSession(me: Boolean!): UserSession
     }
 
     type User {
@@ -30,6 +31,7 @@ const typeDefs = gql
         createUser(email: String!, password: String!): User!
         createUserSession(email: String!, password: String!):UserSession!
     }
+
 
 `;
 

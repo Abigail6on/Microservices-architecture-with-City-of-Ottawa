@@ -1,4 +1,3 @@
-// yarn add date-fns
 import { addHours } from "date-fns";
 import { Users, UserSession } from "#root/db/models";
 import generateUUID from "#root/helpers/generateUUID";
@@ -24,6 +23,7 @@ const setupRoutes = app => {
                 return next(new Error("Incorrect Password!"));
             }
             const expiresAt = addHours(new Date(), USER_SESSION_EXOIRY_HOURS);
+            // yarn add date-fns
             const sessionToken = generateUUID();
             const userSession = await UserSession.create({
                 expiresAt,
@@ -35,6 +35,18 @@ const setupRoutes = app => {
             return next(e);
         }
     });
+
+    app.get("/sessions/:sessionId", async (req, res, next) => {
+        try {
+            const userSession = await UserSession.findByPk(req.params.sessionId);
+
+            if (!userSession) return next(new Error("Invalid Session ID!"))
+
+            return res.json(userSession)
+        }catch (e) {
+            return next(e);
+        }
+    })
 
     app.post("/users", async (req, res, next) => {
         if (!req.body.email || !req.body.password) {
@@ -54,14 +66,14 @@ const setupRoutes = app => {
 
     app.get("/users/:userId", async (req, res, next) => {
         try {
-            const user = await user.findByPK(req.params.userId);
+            const user = await User.findByPK(req.params.userId);
         
-        if (!user) return next(new Error("Invalid user ID"))
+        if (!user) return next(new Error("Invalid user ID"));
+        
         return res.json(user);
         } catch (e) {
         return next(e);
-        }
-    
+        }  
 });
 };
 
