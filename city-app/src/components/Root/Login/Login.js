@@ -4,6 +4,8 @@ import styled from "styled-components";
 import TextInput from "#root/components/shared/TextInput";
 import { useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
+import { setSession } from "#root/store/ducks/session";
+import { useDispatch } from "react-redux";
 
 const Label = styled.label`
     display: block;
@@ -24,6 +26,11 @@ const LoginButton = styled.button`
     margin-top: 0.5rem;
 `;
 
+const OrSignUp = styled.span`
+    font-size: 0.8rem;
+
+`;
+
 const mutation = gql`
     mutation ($email:String!, $password: String!) {
         createUserSession(email: $email, password: $password) {
@@ -36,7 +43,8 @@ const mutation = gql`
 }
 `;
 
-const Login = () => {
+const Login = ({ onChangeToSignUp: pushChangeToSignUp}) => {
+    const dispatch = useDispatch();
     const [createUserSession] = useMutation(mutation);
     const {
     formState: { isSubmitting },
@@ -45,9 +53,19 @@ const Login = () => {
 } = useForm();
 
     const onSubmit = handleSubmit(async ({ email, password }) => {
-        const result = await createUserSession({ variables: {email, password}});
-        console.log(result);
-    })
+        const {
+            data: {
+                createUserSession:createdSession
+            }
+
+        } = await createUserSession({ 
+            variables: {
+                email, 
+                password
+            }});
+        dispatch(setSession(createdSession));
+    });
+
 
     return (
     <form onSubmit = { onSubmit }>
@@ -64,6 +82,13 @@ const Login = () => {
         <LoginButton disabled = { isSubmitting } tyle = "submit">
             Login
         </LoginButton>
+        <OrSignUp>
+            or {" "}
+            <a href ="#" onclick = {evt => {
+                evt.preventDefault();
+                pushChangeToSignUp();
+            }}>Sign up</a>
+        </OrSignUp>
     </form>
 )
 };
