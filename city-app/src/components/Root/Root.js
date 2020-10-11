@@ -2,11 +2,10 @@ import gql from "graphql-tag";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-
 import graphqlClient from "#root/api/graphqlClient";
 import { setSession } from "#root/store/ducks/session";
-
 import AccountDetails from "./Login/AcountDetails";
+import Location from "./Location/Location";
 
 const query = gql`
   {
@@ -63,7 +62,7 @@ const Root = () => {
     <Wrapper>
       <Container>
         <Content>
-          Hello
+          <Location />
         </Content>
         <Sidebar>
           <AccountDetails />

@@ -4,8 +4,6 @@ import styled from "styled-components";
 import TextInput from "#root/components/shared/TextInput";
 import { useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
-import { setSession } from "#root/store/ducks/session";
-import { useDispatch } from "react-redux";
 import * as yup from "yup";
 
 const Label = styled.label`
@@ -55,21 +53,14 @@ const SignUp = ({ onChangeToLogin: pushChangeToLogin}) => {
     const {
         formState: { isSubmitting, IsValid },
         handleSubmit,
-        register
+        register,
+        reset
 } = useForm({ mode: "onChange", validationSchema });
 
     const onSubmit = handleSubmit(async ({ email, password }) => {
-        const {
-            data: {
-                createUser:createdSession
-            }
-
-        } = await createUser({ 
-            variables: {
-                email, 
-                password
-            }});
-        dispatch(setSession(createdSession));
+        await createUser({ variables: { email, password }});
+        reset();
+        pushChangeToLogin();
     });
 
 
