@@ -7,5 +7,12 @@ export default class locationService {
     static async fetchAllLocations () {
         const body = await got.get(`${LOCATION_SERVICE_URI}/locations`).json();
         return body;
+    };
+
+    static async createLocatio ({ description, title }) {
+        const body = await got.post(`${LOATION_SERVICE_URI}/locations`, {
+            json: { description, title }
+        }).json();
+        return body;
     }
 }
