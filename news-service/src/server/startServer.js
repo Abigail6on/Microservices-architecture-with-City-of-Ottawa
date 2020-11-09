@@ -2,7 +2,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import express from "express";
 import accessEnv from "#root/helpers/accessEnv";
-// import setupRouts from "./routes"
+/import setupRouts from "./routes"
 
 const PORT = accessEnv("PORT", 7102);
 
@@ -19,7 +19,7 @@ app.use(
     })
 );
 
-// setupRouts(app);
+setupRouts(app);
 
 app.use((err, req, res, next ) => {
     return res.status(500).json({
