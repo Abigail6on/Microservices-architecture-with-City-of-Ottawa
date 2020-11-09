@@ -1,23 +1,23 @@
-1. Add script watch to watch and pick up local changes
-
-"scripts": {
-    "watch": "babel-watch -L src/index.js"
-  },
+1. Add script watch to watch, pick up local changes and migrate databases
 
 2. Build babel config file 
 
-3. Dockerfile 
+3. Build Dockerfile 
 
 4. Add src/index.js to test yarn watch runing 
 
-5. docker build .
+5. Build docker container 
 
-6. Check which container is running and get container ID
+    docker build .
+
+6. Check running containers and get container ID
 
     docker ps 
 
-7. Excecute docker container with their ID
+7. Excecute docker container with container ID
 
     docker exec -it c1 bash 
 
-8. yarn add express cors body-parser
+8. Add dependencies 
+   
+    yarn add express cors body-parser
