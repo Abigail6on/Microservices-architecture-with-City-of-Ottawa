@@ -1,4 +1,4 @@
-import { UsersService, UserSession } from "#root/adapters/UsersService";
+import { UsersService } from "#root/adapters/UsersService";
 
 
 const createUserSessionResolver = async (obj, { email, password }, context) => {

@@ -23,7 +23,7 @@ const Title = styled.strong`
 
 const Query = gql`
     {
-        Location {
+        locations {
             description 
             id 
             title 
@@ -31,20 +31,20 @@ const Query = gql`
     }
 `;
 
-const Locations = ({ onAddLocation = pushAddLocation }) => {
-    const { data, loading } = useQuery(Query);
-    
+const Locations = () => {
+    const { data, loading, refetch } = useQuery(Query);
+    console.log(useQuery(Query));
     if (loading) return "Loading...";
     return (
         <div>
             <div>
-                {data.Location.map(Location => (
-                    <Location key = {Location.id}>
+                {data.locations.map(location => (
+                    <Location key = {location.id}>
                         <Title>{
-                            Location.Title}
+                            location.Title}
                         </Title>
                         <Description>
-                            {Location.description}
+                            {location.description}
                         </Description>
                     </Location>
                 ))}

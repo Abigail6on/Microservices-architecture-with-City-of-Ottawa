@@ -6,6 +6,7 @@ import graphqlClient from "#root/api/graphqlClient";
 import { setSession } from "#root/store/ducks/session";
 import AccountDetails from "./Login/AcountDetails";
 import Location from "./Location/Location";
+import { ApolloProvider } from '@apollo/client';
 
 const query = gql`
   {
@@ -60,6 +61,7 @@ const Root = () => {
 
   return (
     <Wrapper>
+      <ApolloProvider client={graphqlClient}>
       <Container>
         <Content>
           <Location />
@@ -68,6 +70,7 @@ const Root = () => {
           <AccountDetails />
         </Sidebar>
       </Container>
+      </ApolloProvider>
     </Wrapper>
   );
 };

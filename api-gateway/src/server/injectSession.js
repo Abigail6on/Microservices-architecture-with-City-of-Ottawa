@@ -1,8 +1,8 @@
-import UserService from "#root/adapters/UsersService";
+import UsersService from "#root/adapters/UsersService";
 
 const injectSession = async(req, res, next) => {
     if (req.cookies.UserSessionId) {
-        const userSession = await UserService.fetchUserSession({
+        const userSession = await UsersService.fetchUserSession({
             sessionId: req.cookies.UserSessionId
         });
 

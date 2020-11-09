@@ -9,8 +9,8 @@ export default class locationService {
         return body;
     };
 
-    static async createLocatio ({ description, title }) {
-        const body = await got.post(`${LOATION_SERVICE_URI}/locations`, {
+    static async createLocation ({ description, title }) {
+        const body = await got.post(`${LOCATION_SERVICE_URI}/locations`, {
             json: { description, title }
         }).json();
         return body;

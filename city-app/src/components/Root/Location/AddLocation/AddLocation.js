@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import useForm from "react-hook-form";
+import { useForm } from "react-hook-form";
 import TextInput from "#root/components/shared/TextInput";
 import TextArea from '#root/components/shared/TextArea';
 import { useMutation } from "@apollo/react-hooks";
@@ -55,7 +55,7 @@ const AddLocation = () => {
     if (!session) return <p>Login to add Location</p>
 
     const onSubmit = handelSubmit(async ({description, title}) => {
-        await createLocation ({ variables: { discription, title }});
+        await createLocation ({ variables: { description, title }});
         reset();
     })
 

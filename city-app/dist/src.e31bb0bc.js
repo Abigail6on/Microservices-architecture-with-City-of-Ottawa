@@ -76738,7 +76738,7 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _reactHookForm = _interopRequireDefault(require("react-hook-form"));
+var _reactHookForm = require("react-hook-form");
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
@@ -76840,7 +76840,7 @@ var Login = function Login(_ref) {
       _useMutation2 = _slicedToArray(_useMutation, 1),
       createUserSession = _useMutation2[0];
 
-  var _useForm = (0, _reactHookForm.default)(),
+  var _useForm = (0, _reactHookForm.useForm)(),
       isSubmitting = _useForm.formState.isSubmitting,
       handleSubmit = _useForm.handleSubmit,
       register = _useForm.register;
@@ -77021,7 +77021,7 @@ var _react = _interopRequireDefault(require("react"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _reactHookForm = _interopRequireDefault(require("react-hook-form"));
+var _reactHookForm = require("react-hook-form");
 
 var _TextInput = _interopRequireDefault(require("#root/components/shared/TextInput"));
 
@@ -77120,7 +77120,7 @@ var AddLocation = function AddLocation() {
       _useMutation2 = _slicedToArray(_useMutation, 1),
       createLocation = _useMutation2[0];
 
-  var _useForm = (0, _reactHookForm.default)(),
+  var _useForm = (0, _reactHookForm.useForm)(),
       isSubmitting = _useForm.formState.isSubmitting,
       handelSubmit = _useForm.handelSubmit,
       register = _useForm.register,
@@ -77141,7 +77141,7 @@ var AddLocation = function AddLocation() {
               _context.next = 3;
               return createLocation({
                 variables: {
-                  discription: discription,
+                  description: description,
                   title: title
                 }
               });
@@ -77216,7 +77216,7 @@ var _AddLocation = _interopRequireDefault(require("./AddLocation"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n    {\n        Location {\n            description \n            id \n            title \n        }\n    }\n"]);
+  var data = _taggedTemplateLiteral(["\n    {\n        locations {\n            description \n            id \n            title \n        }\n    }\n"]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -77267,19 +77267,18 @@ var Title = _styledComponents.default.strong(_templateObject3());
 
 var Query = (0, _graphqlTag.default)(_templateObject4());
 
-var Locations = function Locations(_ref) {
-  var _ref$onAddLocation = _ref.onAddLocation,
-      onAddLocation = _ref$onAddLocation === void 0 ? pushAddLocation : _ref$onAddLocation;
-
+var Locations = function Locations() {
   var _useQuery = (0, _reactHooks.useQuery)(Query),
       data = _useQuery.data,
-      loading = _useQuery.loading;
+      loading = _useQuery.loading,
+      refetch = _useQuery.refetch;
 
+  console.log((0, _reactHooks.useQuery)(Query));
   if (loading) return "Loading...";
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", null, data.Location.map(function (Location) {
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", null, data.locations.map(function (location) {
     return /*#__PURE__*/_react.default.createElement(Location, {
-      key: Location.id
-    }, /*#__PURE__*/_react.default.createElement(Title, null, Location.Title), /*#__PURE__*/_react.default.createElement(Description, null, Location.description));
+      key: location.id
+    }, /*#__PURE__*/_react.default.createElement(Title, null, location.Title), /*#__PURE__*/_react.default.createElement(Description, null, location.description));
   })), /*#__PURE__*/_react.default.createElement(_AddLocation.default, {
     onAddLocation: function onAddLocation() {
       return refetch();
@@ -77312,6 +77311,8 @@ var _session = require("#root/store/ducks/session");
 var _AcountDetails = _interopRequireDefault(require("./Login/AcountDetails"));
 
 var _Location = _interopRequireDefault(require("./Location/Location"));
+
+var _client = require("@apollo/client");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -77415,12 +77416,14 @@ var Root = function Root() {
     });
   }, []);
   if (!initialised) return "Loading...";
-  return /*#__PURE__*/_react.default.createElement(Wrapper, null, /*#__PURE__*/_react.default.createElement(Container, null, /*#__PURE__*/_react.default.createElement(Content, null, /*#__PURE__*/_react.default.createElement(_Location.default, null)), /*#__PURE__*/_react.default.createElement(Sidebar, null, /*#__PURE__*/_react.default.createElement(_AcountDetails.default, null))));
+  return /*#__PURE__*/_react.default.createElement(Wrapper, null, /*#__PURE__*/_react.default.createElement(_client.ApolloProvider, {
+    client: _graphqlClient.default
+  }, /*#__PURE__*/_react.default.createElement(Container, null, /*#__PURE__*/_react.default.createElement(Content, null, /*#__PURE__*/_react.default.createElement(_Location.default, null)), /*#__PURE__*/_react.default.createElement(Sidebar, null, /*#__PURE__*/_react.default.createElement(_AcountDetails.default, null)))));
 };
 
 var _default = Root;
 exports.default = _default;
-},{"graphql-tag":"../node_modules/graphql-tag/src/index.js","react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","#root/api/graphqlClient":"api/graphqlClient.js","#root/store/ducks/session":"store/ducks/session.js","./Login/AcountDetails":"components/Root/Login/AcountDetails/index.js","./Location/Location":"components/Root/Location/Location.js"}],"components/Root/index.js":[function(require,module,exports) {
+},{"graphql-tag":"../node_modules/graphql-tag/src/index.js","react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","#root/api/graphqlClient":"api/graphqlClient.js","#root/store/ducks/session":"store/ducks/session.js","./Login/AcountDetails":"components/Root/Login/AcountDetails/index.js","./Location/Location":"components/Root/Location/Location.js","@apollo/client":"../node_modules/@apollo/client/index.js"}],"components/Root/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -85661,7 +85664,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60526" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62254" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
