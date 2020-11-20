@@ -16,17 +16,17 @@ Basic dependency installation:
 
 (Whenever you want to implement a new service, this will be the basic workflow to get going)
 
-* yarn init -y
+* `yarn init -y`
 
-* yarn add -D babel-watch
+* `yarn add -D babel-watch`
 
     Watch out changes of local code 
 
-* yarn add @babel/core @babel/polyfill @babel/preset-env babel-plugin-module-resolver
+* `yarn add @babel/core @babel/polyfill @babel/preset-env babel-plugin-module-resolver`
 
     Babel is a JavaScript compiler 
 
-* yarn add dotenv
+* `yarn add dotenv`
 
     add environment variables
 
