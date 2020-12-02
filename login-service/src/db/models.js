@@ -1,8 +1,8 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "./connection";
 
-export class Users extends Model {}
-Users.init(
+export class User extends Model {}
+User.init(
     {
     id: {
         allowNull: false,

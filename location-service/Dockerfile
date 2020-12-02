@@ -7,4 +7,4 @@ WORKDIR /opt/app/location-service
 
 RUN yarn
 
-CMD yarn watch
+CMD yarn db:migrate && yarn watch
