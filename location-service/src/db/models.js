@@ -16,7 +16,7 @@ Location.init (
         }
     },
     {
-        modelNmae: "location",
+        modelName: "location",
         sequelize
 
     }
