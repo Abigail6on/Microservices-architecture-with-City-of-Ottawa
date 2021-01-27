@@ -1,11 +1,11 @@
 # Revamping-the-City-of-Ottawa
 Revamping the city of Ottawa app using microservice architecture.
 
-    This is a project that build with micrioservices architecture to improve the current 
-    city of Ottawa application.  
-    Current function contains sign in, location service, news service and report an issue service.
+    This is a project that builds with microservices architecture to improve the current 
+    City of Ottawa application.  
+    The current function contains sign-in, location service, news service, and report an issue service.
     Each service has a Docker container running in the backend and has a different portal 
-    which means we also have seperate databases back up.
+    which means we also have separate databases back up.
 
 * Backend technology: `node.js`, `GraphQL`, `MYSQL`, `Docker`, and `Sequelize`
 
